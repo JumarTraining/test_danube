@@ -40,7 +40,7 @@ public class ClientGui extends JPanel{
 	
 	JButton enter;
 	JButton cancel;
-	ClientGui(){
+	ClientGui(ActionListener a){
 		
 		name    = new JLabel("Company Name");
 		adress  = new JLabel("Company Adress");
@@ -56,6 +56,8 @@ public class ClientGui extends JPanel{
 		
 		enter   = new JButton("Enter");
 		cancel  = new JButton("Cancel");
+		cancel.addActionListener(a);
+		
 		
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
