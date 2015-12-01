@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
-//govan
+
 @SuppressWarnings("serial")
 public class AddStaffGUI extends StaffGUI{
 	public AddStaffGUI(ActionListener a){
