@@ -8,8 +8,8 @@ import javax.swing.JPanel;
 
 import com.mississippi.gui.staff.*;
 
-public class Caller extends JFrame{
-	///hi i changed this
+public class StaffCaller extends JFrame{
+	
 	static JPanel contents = new JPanel();
 	JPanel[] cards = new JPanel[6];
 	String[] labels = new String[6];
@@ -18,9 +18,9 @@ public class Caller extends JFrame{
 	
 	
 	public static void main(String args[]){
-		new Caller();
+		new StaffCaller();
 	}
-	Caller(){
+	StaffCaller(){
 		super("gui");
 		this.setSize(new Dimension(500,500));
 		contents.setLayout(new CardLayout());
