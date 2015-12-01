@@ -1,17 +1,15 @@
 package com.mississippi.login;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.UnsupportedEncodingException;
 import java.sql.*;
-
 import javax.swing.*;
 import javax.swing.JFrame.*;
-
 import com.mississippi.databaseaccess.DB;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
-
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
