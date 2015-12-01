@@ -13,6 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import com.mississippi.gui.client.AddClient;
+import com.mississippi.gui.client.EditClient;
 import com.mississippi.gui.staff.AddStaffGUI;
 import com.mississippi.gui.staff.ChangePassGUI;
 import com.mississippi.gui.staff.ChangeRoleGUI;
@@ -76,7 +77,7 @@ public class ClientCaller extends JFrame{
 		
 		
 		cards[1] = new AddClient();
-		cards[2] = new EditStaffGUI(a);
+		cards[2] = new EditClient(1);
 		cards[3] = new ChangePassGUI(a);
 		cards[4] = new ChangeRoleGUI(a);
 		cards[5] = new UpdatePayGUI(a);

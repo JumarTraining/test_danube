@@ -25,14 +25,10 @@ public class DB {
 		}
 		
 		public boolean createConnection(){
-			try {
-				d = new com.mysql.jdbc.Driver();
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+
 			Connection con;
 			try {
+				d = new com.mysql.jdbc.Driver();
 				con = (Connection) d.connect(url,prop);
 				if (con == null){
 				System.out.println("connection Failed");
@@ -138,7 +134,7 @@ public class DB {
 					else{q+=";";}
 					
 				}
-			System.out.println(q);
+			//System.out.println(q);
 			return executeUpdate(q);
 	}
 	

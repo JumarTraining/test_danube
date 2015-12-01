@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 
 public class EditClient extends ClientGui{
-	EditClient(int id){
+	public EditClient(int id){
 		super();
 		/*ResultSet Rs=search("Client","ClientID",""+id);
 		
