@@ -9,8 +9,8 @@ public class DB {
 		Driver d;
 		String url = "jdbc:mysql://localhost:3306/mississippi";
 		
-		public DB()throws SQLException{
-			d = new com.mysql.jdbc.Driver();
+		public DB(){
+			
 			prop.setProperty("user", "root");
 			prop.setProperty("password", defaultPass());
 		}
@@ -25,6 +25,12 @@ public class DB {
 		}
 		
 		public boolean createConnection(){
+			try {
+				d = new com.mysql.jdbc.Driver();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			Connection con;
 			try {
 				con = (Connection) d.connect(url,prop);
