@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 public class EditClient extends ClientGui{
 	EditClient(int id){
 		super();
-		ResultSet Rs=search("Client","ClientID",""+id);
+		/*ResultSet Rs=search("Client","ClientID",""+id);
 		
 		while(Rs.next()){
 			nameBox.setText(Rs.getString(Rs.findColumn("Name")));
@@ -15,12 +15,11 @@ public class EditClient extends ClientGui{
 			phoneBox.setText(Rs.getString(Rs.findColumn("Phone")));
 			emailBox.setText(Rs.getString(Rs.findColumn("Email")));
 			contactBox.setText(Rs.getString(Rs.findColumn("FK_StaffID")));
-		}
+		}*/
 		
 		enter.removeAll();
 		enter.addActionListener(new ActionListener(){
 
-			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
 				String value="('"+nameBox.getText()+z+adressBox.getText()+z+phoneBox.getText()+z+emailBox.getText()+z+contactBox.getText()+"');";
