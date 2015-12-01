@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class AddClient extends ClientGui{
-	public AddClient(){
-		super();
+	public AddClient(ActionListener a){
+		super(a);
 		
-		enter.removeAll();
+		//enter.removeAll();
 		enter.addActionListener(new ActionListener(){
 
 			public void actionPerformed(ActionEvent arg0) {

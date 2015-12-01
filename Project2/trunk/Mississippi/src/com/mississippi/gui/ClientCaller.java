@@ -41,6 +41,7 @@ public class ClientCaller extends JFrame{
 		ActionListener a = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			    cl.show(contents, labels[0]);
+			    System.out.println("########");
 			}
 
 		};
@@ -76,8 +77,8 @@ public class ClientCaller extends JFrame{
 		}
 		
 		
-		cards[1] = new AddClient();
-		cards[2] = new EditClient(1);
+		cards[1] = new AddClient(a);
+		cards[2] = new EditClient(a,1);
 		cards[3] = new ChangePassGUI(a);
 		cards[4] = new ChangeRoleGUI(a);
 		cards[5] = new UpdatePayGUI(a);
