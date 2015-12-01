@@ -92,17 +92,13 @@ public class Login extends JFrame
 	{
 		public void actionPerformed(ActionEvent e)
         {
-			String query = ("SELECT PassHash FROM staff where StaffID = '" + IDTXT.getText() + "';");
-			try {
-				passcheck = new DB();
-				passcheck.setLogin(user, pass);
-				passcheck.createConnection();
-				ResultSet rs = passcheck.selectCustom(query);
-			}
-			catch (SQLException e1)
-			{
-				e1.printStackTrace();
-			}
+			user = IDTXT.getText();
+			pass = PassTXT.getText();
+			String query = ("SELECT PassHash FROM staff where StaffID = '" + user + "';");
+			passcheck = new DB();
+			passcheck.setLogin(user, pass);
+			passcheck.createConnection();
+			ResultSet rs = passcheck.selectCustom(query);
         }
 	}
 }
