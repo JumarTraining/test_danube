@@ -12,7 +12,6 @@ public class AddClient extends ClientGui{
 		enter.removeAll();
 		enter.addActionListener(new ActionListener(){
 
-			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
 				ArrayList<String> columns = new ArrayList<String>(Arrays.asList("Name","Adress","Phone","Email","FK_StaffID"));
