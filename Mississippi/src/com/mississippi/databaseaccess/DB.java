@@ -7,7 +7,7 @@ public class DB {
 		Statement stat;
 		Properties prop = new Properties();
 		Driver d;
-		String url = "jdbc:mysql://localhost:3306/charity";
+		String url = "jdbc:mysql://localhost:3306/mississippi";
 		
 		public DB()throws SQLException{
 			d = new com.mysql.jdbc.Driver();

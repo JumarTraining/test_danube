@@ -1,14 +1,17 @@
 package com.mississippi.login;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.UnsupportedEncodingException;
 import java.sql.*;
+
 import javax.swing.*;
 import javax.swing.JFrame.*;
+
+import com.mississippi.databaseaccess.DB;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -23,6 +26,11 @@ public class Login extends JFrame
 	JTextField PassTXT = new JTextField();
 	
 	JButton SubmitBTN = new JButton("Enter");
+	
+	DB passcheck;
+	
+	String user;
+	String pass;
 	
 	public static void main(String[] args)
 	{
@@ -72,7 +80,6 @@ public class Login extends JFrame
 		SubmitBTN.addActionListener(new ListenToLogin());
 	}
 	
-	
 	public byte[] getHash(String password) throws NoSuchAlgorithmException, UnsupportedEncodingException
 	{
 		MessageDigest digest = MessageDigest.getInstance("SHA-1");
@@ -81,13 +88,21 @@ public class Login extends JFrame
 		return input;
 	 }
 	
-	
 	class ListenToLogin implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e)
         {
-			String query = ("SELECT PassHash FROM staff where StaffID = " + IDTXT.getText() + ";");
-			
+			String query = ("SELECT PassHash FROM staff where StaffID = '" + IDTXT.getText() + "';");
+			try {
+				passcheck = new DB();
+				passcheck.setLogin(user, pass);
+				passcheck.createConnection();
+				ResultSet rs = passcheck.selectCustom(query);
+			}
+			catch (SQLException e1)
+			{
+				e1.printStackTrace();
+			}
         }
 	}
 }
