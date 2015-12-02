@@ -10,7 +10,6 @@ public class UpdatePayGUI extends StaffGUI{
 
 	public UpdatePayGUI(ActionListener a){
 		super();
-		JButton check = new JButton("...");
 		setTitle("Update Pay");
 		c.gridx = 0;
 		c.gridy = 1;
@@ -21,12 +20,11 @@ public class UpdatePayGUI extends StaffGUI{
 		add(lnamelb,c);
 		c.gridy++;
 		add(typelb,c);
-		c.gridx = 1;
 		c.gridy = 1;
+		c.gridx = 2;
+		add(search,c);
+		c.gridx = 1;
 		add(staffId,c);
-		c.gridx ++;
-		add(check,c);
-		c.gridx--;
 		c.gridy++;
 		add(fname,c);
 		c.gridy++;
@@ -40,6 +38,8 @@ public class UpdatePayGUI extends StaffGUI{
 		c.gridx=1;
 		create.setText("Submit");//re-use unused button :)
 		add(create,c);
+		
+		
 		
 	}
 }

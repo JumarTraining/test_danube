@@ -39,6 +39,8 @@ public class EditStaffGUI extends StaffGUI{
 		c.gridy++;
 		//adding textfields and combobox's
 		c.gridy=2;
+		c.gridx = 2;
+		add(search,c);
 		c.gridx=1;
 		this.add(staffId,c);
 		c.gridy++;

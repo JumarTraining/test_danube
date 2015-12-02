@@ -2,7 +2,9 @@ package com.mississippi.gui.staff;
 
 
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JSeparator;
@@ -12,7 +14,12 @@ import javax.swing.SwingConstants;
 public class AddStaffGUI extends StaffGUI{
 	public AddStaffGUI(ActionListener a){
 		super();
-		Title.setText("Add New Employee");
+		
+
+		
+		
+		populateTypes(selectAllQuery("Types"));
+		populateGrades(selectAllQuery("Grades"));
 		c.gridx = 0;
 		c.gridwidth = 2;
 		c.gridy = 0;
@@ -59,8 +66,24 @@ public class AddStaffGUI extends StaffGUI{
 		cancel.addActionListener(a);
 		this.add(cancel,c);
 		c.gridx=1;
+		create.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0) {
+				ArrayList<String> Columns = new ArrayList<String>();
+				Columns.add("StaffID");
+				Columns.add("FirstName");
+				Columns.add("Surname");
+				Columns.add("FK_Paygrade");
+				Columns.add("Type");
+				ArrayList<String> Values = new ArrayList<String>();
+				Values.add("45");
+				Values.add(fname.getText());
+				Values.add(lname.getText());
+				Values.add(paygrade.getSelectedItem().toString());
+				Values.add((String)type.getSelectedItem());
+				database.Insert("Staff", Columns, Values);
+			}
+		});
 		this.add(create,c);
-		
 	}
 	
 }
