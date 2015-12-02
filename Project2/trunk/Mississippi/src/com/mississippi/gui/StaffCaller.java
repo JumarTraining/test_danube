@@ -79,8 +79,7 @@ public class StaffCaller extends JFrame{
 		setVisible(true);
 		
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		
-		
-		
+
 	}
+	
 }

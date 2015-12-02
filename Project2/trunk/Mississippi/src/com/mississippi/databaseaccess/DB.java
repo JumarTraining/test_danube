@@ -11,7 +11,7 @@ public class DB {
 		
 		public DB(){
 			
-			prop.setProperty("user", "root");
+			prop.setProperty("user", "User");
 			prop.setProperty("password", defaultPass());
 		}
 		
@@ -45,7 +45,7 @@ public class DB {
 		
 		private boolean executeUpdate(String q) {
 			try {
-				//stat.executeUpdate(q);
+				stat.executeUpdate(q);
 				return true;
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -57,9 +57,8 @@ public class DB {
 		
 		private ResultSet executeQuery(String q) {
 			
-			ResultSet rs = null;
 			try {
-				//rs = stat.executeQuery(q);
+				ResultSet rs = stat.executeQuery(q);
 				return rs;
 			}catch(Exception e) {
 				// TODO Auto-generated catch block
@@ -104,7 +103,6 @@ public class DB {
 				q+="');";
 			}
 		}
-		System.out.println(q);
 		
 		return executeUpdate(q);
 }
@@ -134,7 +132,6 @@ public class DB {
 					else{q+=";";}
 					
 				}
-			//System.out.println(q);
 			return executeUpdate(q);
 	}
 	
@@ -153,6 +150,11 @@ public class DB {
 			}
 			return executeQuery(q);
 		}
+	}
+	
+	public ResultSet selectAll(String Table){
+		String q = "Select * From "+Table+" ";
+		return executeQuery(q);
 	}
 	/**
 	 * @param 

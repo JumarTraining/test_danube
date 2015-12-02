@@ -19,8 +19,10 @@ public class ChangeRoleGUI extends StaffGUI{
 	add(lnamelb,c);
 	c.gridy++;
 	add(typelb,c);
-	c.gridx = 1;
 	c.gridy = 1;
+	c.gridx = 2;
+	add(search,c);
+	c.gridx = 1;
 	add(staffId,c);
 	c.gridx ++;
 	add(check,c);
