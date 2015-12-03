@@ -12,17 +12,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import com.mississippi.databaseaccess.DB;
+
 
 public class ClientGui extends JPanel{
-
-	public static void main(String args[]){
-		JFrame a = new JFrame();
-		ClientGui b=new AddClient();
-		
-		a.add(b);
-		a.pack();
-		a.setVisible(true);
-	}
 	
 	String z="','";
 	
@@ -40,7 +33,14 @@ public class ClientGui extends JPanel{
 	
 	JButton enter;
 	JButton cancel;
+	
+	DB db;
 	ClientGui(ActionListener a){
+		
+		db=new DB();
+		db.setLogin("root", "port2port");
+		db.setDatabase("jdbc:mysql://localhost:3308/mississippi");
+		db.createConnection();
 		
 		name    = new JLabel("Company Name");
 		adress  = new JLabel("Company Adress");
@@ -56,8 +56,8 @@ public class ClientGui extends JPanel{
 		
 		enter   = new JButton("Enter");
 		cancel  = new JButton("Cancel");
-		cancel.addActionListener(a);
 		
+		cancel.addActionListener(a);
 		
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();

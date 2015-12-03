@@ -1,15 +1,21 @@
 package com.mississippi.gui.client;
 
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class EditClient extends ClientGui{
-	public EditClient(ActionListener a, int id){
+public class SearchClient extends ClientGui{
+
+	public SearchClient(ActionListener a, int id) {
 		super(a);
+		this.nameBox.setEditable(false);
+		this.adressBox.setEditable(false);
+		this.phoneBox.setEditable(false);
+		this.emailBox.setEditable(false);
+		this.contactBox.setEditable(false);
+		
 		
 		final ArrayList<String> column = new ArrayList<String>(Arrays.asList("ClientID"));
 		final ArrayList<String> value = new ArrayList<String>(Arrays.asList(""+id));
@@ -28,19 +34,5 @@ public class EditClient extends ClientGui{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		enter.removeAll();
-		enter.addActionListener(new ActionListener(){
-
-			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
-				
-				ArrayList Columns=new ArrayList(Arrays.asList("Name","Adress","Phhone","Email","FK_StaffID"));
-				ArrayList Values = new ArrayList(Arrays.asList(nameBox.getText(),adressBox.getText(),emailBox.getText(),contactBox.getText()));
-				db.Update("Client", Columns, Values, column, value);
-				
-			}
-			
-		});
 	}
 }

@@ -15,8 +15,9 @@ public class AddClient extends ClientGui{
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
 				ArrayList<String> columns = new ArrayList<String>(Arrays.asList("Name","Adress","Phone","Email","FK_StaffID"));
+				System.out.println(contactBox.getText());
 				ArrayList<String> values = new ArrayList<String>(Arrays.asList(nameBox.getText(),adressBox.getText(),phoneBox.getText(),emailBox.getText(),contactBox.getText()));
-				
+				db.Insert("Client", columns, values);
 			}
 				
 		});

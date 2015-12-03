@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 
 import com.mississippi.gui.client.AddClient;
 import com.mississippi.gui.client.EditClient;
+import com.mississippi.gui.client.SearchClient;
 import com.mississippi.gui.staff.AddStaffGUI;
 import com.mississippi.gui.staff.ChangePassGUI;
 import com.mississippi.gui.staff.ChangeRoleGUI;
@@ -22,37 +23,36 @@ import com.mississippi.gui.staff.UpdatePayGUI;
 
 public class ClientCaller extends JFrame{
 
-	static JPanel contents = new JPanel();
+	static JPanel index = new JPanel();
 	JPanel[] cards = new JPanel[6];
-	String[] labels = new String[6];
+	String[] text = new String[6];
 	JButton[] buttons = {new JButton(),new JButton(),new JButton(),new JButton(),new JButton()};
 	static protected CardLayout cl;
 	
 	
 	public static void main(String args[]){
+
 		new ClientCaller();
 	}
-	ClientCaller(){
+	public ClientCaller(){
 		super("gui");
+
 		this.setSize(new Dimension(500,500));
-		contents.setLayout(new CardLayout());
-		cl = (CardLayout)(contents.getLayout());
+		index.setLayout(new CardLayout());
+		cl = (CardLayout)(index.getLayout());
 		
 		ActionListener a = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			    cl.show(contents, labels[0]);
-			    System.out.println("########");
+			    cl.show(index, text[0]);
 			}
 
 		};
 		
 		cards[0] = new JPanel();
-		labels[0] = "Home";
-		labels[1] = "Add Client";
-		labels[2] = "Edit Client";
-		labels[3] = "Change Employee Password";
-		labels[4] = "Change Employee Role";
-		labels[5] = "Change Employee Pay";
+		text[0] = "start";
+		text[1] = "Add Client";
+		text[2] = "Edit Client";
+		text[3] = "Search Client";
 		
 		cards[0].setLayout(new GridBagLayout());
 		
@@ -62,13 +62,13 @@ public class ClientCaller extends JFrame{
 		c.insets = new Insets(5,5,5,5);
 		c.fill = GridBagConstraints.BOTH;
 		
-		for(int i = 0;i < 5; i++){
+		for(int i = 0;i < 3; i++){
 			final int b = i+1;
-			buttons[i].setText(labels[i+1]);
+			buttons[i].setText(text[i+1]);
 			buttons[i].setSize(300, 80);
 			buttons[i].addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-				    cl.show(contents, labels[b]);
+				    cl.show(index, text[b]);
 				}
 
 			});
@@ -79,16 +79,14 @@ public class ClientCaller extends JFrame{
 		
 		cards[1] = new AddClient(a);
 		cards[2] = new EditClient(a,1);
-		cards[3] = new ChangePassGUI(a);
-		cards[4] = new ChangeRoleGUI(a);
-		cards[5] = new UpdatePayGUI(a);
+		cards[3] = new SearchClient(a,1);
 		
-		for(int i = 0;i < 6; i++){
-			contents.add(cards[i],labels[i]);
+		for(int i = 0;i < 4; i++){
+			index.add(cards[i],text[i]);
 		}
 		
-		this.add(contents);
-		setVisible(true);
+		this.add(index);
+		this.setVisible(true);
 		
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
