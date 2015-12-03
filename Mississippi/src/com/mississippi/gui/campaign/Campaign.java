@@ -13,7 +13,7 @@ import javax.swing.JTextField;
 
 public class Campaign extends JFrame implements ActionListener {
 	JLabel welcomeLbl = new JLabel("Campaigns");
-	
+	//
 	Font font = new Font("Century Gothic", Font.BOLD,26);
 	
 	JButton insertBtn = new JButton("Insert new campaign");
