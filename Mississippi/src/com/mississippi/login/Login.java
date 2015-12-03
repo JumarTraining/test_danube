@@ -109,7 +109,7 @@ public class Login extends JFrame
 			{
 				if(Integer.toString(passHash) == rs.getString("PassHash"))
 				{
-					//do things
+					//do things for reasons
 				}
 			}
 			catch (SQLException e1)
