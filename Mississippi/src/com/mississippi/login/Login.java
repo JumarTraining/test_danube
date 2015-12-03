@@ -5,14 +5,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.UnsupportedEncodingException;
 import java.sql.*;
+
 import javax.swing.*;
 import javax.swing.JFrame.*;
+
 import com.mississippi.databaseaccess.DB;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-//comment
+
 public class Login extends JFrame
 {
 	//create buttons and things
@@ -78,6 +81,7 @@ public class Login extends JFrame
 		SubmitBTN.addActionListener(new ListenToLogin());
 	}
 	
+	/** USE THIS OR JUST hashCode() ?
 	public byte[] getHash(String password) throws NoSuchAlgorithmException, UnsupportedEncodingException
 	{
 		MessageDigest digest = MessageDigest.getInstance("SHA-1");
@@ -85,17 +89,57 @@ public class Login extends JFrame
 		byte[] input = digest.digest(password.getBytes("UTF-8"));
 		return input;
 	 }
+	 **/
 	
 	class ListenToLogin implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e)
         {
+			user = IDTXT.getText();
+			pass = PassTXT.getText();
+			int passHash;
+			passHash = pass.hashCode();
 			String query = ("SELECT PassHash FROM staff where StaffID = '" + IDTXT.getText() + "';");
 			passcheck = new DB();
 			passcheck.setLogin(user, pass);
 			passcheck.createConnection();
 			ResultSet rs = passcheck.selectCustom(query);
+			
+			try
+			{
+				if(Integer.toString(passHash) == rs.getString("PassHash"))
+				{
+					//do things
+				}
+			}
+			catch (SQLException e1)
+			{
+				e1.printStackTrace();
+			}
         }
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
