@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 import com.mississippi.gui.advert.AdvertisementCreateGUI;
 import com.mississippi.gui.advert.AdvertisementUpdateGUI;
 import com.mississippi.gui.advert.AdvertisementViewGui;
-
+//
 
 @SuppressWarnings("serial")
 public class AdvertismentCaller extends JFrame {
