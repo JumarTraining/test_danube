@@ -14,6 +14,8 @@ import com.mississippi.gui.advert.AdvertisementViewGui;
 @SuppressWarnings("serial")
 public class AdvertismentCaller extends JFrame {
 	
+	//govan channges
+	
 	static JPanel contents = new JPanel();
 	JPanel[] cards = new JPanel[6];
 	String[] labels = new String[6];
