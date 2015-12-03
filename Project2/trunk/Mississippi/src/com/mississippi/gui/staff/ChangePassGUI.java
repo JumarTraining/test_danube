@@ -44,7 +44,6 @@ public class ChangePassGUI extends StaffGUI{
 		
 		
 		
-		
 	}
 	@Override
 	protected void userSearch(String ID){
