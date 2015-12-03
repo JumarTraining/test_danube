@@ -52,7 +52,7 @@ public Campaign(){
 			//get source of actionlistener
 			//create a new jframe = "campaignaddGUI"
 	public void actionPerformed(ActionEvent evt) {
-	    if (evt.getActionCommand() == ;
+	    if (evt.getActionCommand() == updtateBtn ;
 	    } else if (evt.getActionCommand() == ;
 	    }
 	  }
