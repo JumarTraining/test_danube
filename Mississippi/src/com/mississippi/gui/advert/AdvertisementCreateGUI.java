@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
-
+//ryan
 @SuppressWarnings("serial")
 public class AdvertisementCreateGUI extends AdvertisementGUI {
 	public AdvertisementCreateGUI(ActionListener a){
