@@ -16,6 +16,8 @@ public class AdvertismentCaller extends JFrame {
 	
 	//govan channges
 	
+	///test from westbury
+	
 	static JPanel contents = new JPanel();
 	JPanel[] cards = new JPanel[6];
 	String[] labels = new String[6];
