@@ -9,21 +9,25 @@ import java.util.*;
 		Statement stat;
 		Properties prop = new Properties();
 		Driver d;
-		String url = "jdbc:mysql://localhost:3306/mississippi";
-		
+		static String password = "password";
+		static String url = "jdbc:mysql://localhost:3306/mississippi";
+		//s
 		public DB(){
 			
-			prop.setProperty("user", "User");
-			prop.setProperty("password", defaultPass());
+			prop.setProperty("user", "root");
+			prop.setProperty("password", password);
 		}
 		
 		public void setDatabase(String url){
 			this.url = url;
 		}
 		
-		public void setLogin(String user, String Pass){
-		prop.setProperty("user", user);
-		prop.setProperty("password", Pass);
+		public void setLogin(){
+			if(password.equals("password")){
+			Scanner s = new Scanner(System.in);
+			System.out.println("Please Enter Password");
+			password = s.nextLine();
+			s.close();}
 		}
 		
 		public boolean createConnection(){
@@ -173,7 +177,5 @@ import java.util.*;
 	public boolean insertCustom(String q){
 		return executeUpdate(q);
 	}
-	static String defaultPass(){
-		return "goomoonryong";
-	}
+
 }

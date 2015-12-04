@@ -45,7 +45,6 @@ public class StaffGUI extends JPanel{
 	StaffGUI(){
 	try{
 	database = new DB();
-	database.setLogin("root", "goomoonryong");
 	database.setDatabase("jdbc:mysql://localhost:3306/mississippi");
 	database.createConnection();
 	}

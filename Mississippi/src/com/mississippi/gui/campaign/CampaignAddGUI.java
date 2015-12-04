@@ -25,7 +25,7 @@ public class CampaignAddGUI extends JFrame implements ActionListener {
 		JLabel costLbl = new JLabel("Cost:");
 		JLabel statusLbl = new JLabel("Status");
 		
-		
+		//
 		JTextField nameText = new JTextField();
 		JTextField durationText = new JTextField();
 		JTextField costText = new JTextField();

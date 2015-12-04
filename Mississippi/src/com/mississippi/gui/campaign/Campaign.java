@@ -13,7 +13,7 @@ import javax.swing.JTextField;
 
 public class Campaign extends JFrame implements ActionListener {
 	JLabel welcomeLbl = new JLabel("Campaigns");
-	
+	//
 	Font font = new Font("Century Gothic", Font.BOLD,26);
 	
 	JButton insertBtn = new JButton("Insert new campaign");
@@ -52,7 +52,7 @@ public Campaign(){
 			//get source of actionlistener
 			//create a new jframe = "campaignaddGUI"
 	public void actionPerformed(ActionEvent evt) {
-	    if (evt.getActionCommand() == ;
+	    if (evt.getActionCommand() == updtateBtn ;
 	    } else if (evt.getActionCommand() == ;
 	    }
 	  }

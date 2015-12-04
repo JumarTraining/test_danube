@@ -6,6 +6,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import com.mississippi.databaseaccess.DB;
 import com.mississippi.gui.staff.*;
 
 public class StaffCaller extends JFrame{
@@ -20,7 +21,7 @@ public class StaffCaller extends JFrame{
 	public static void main(String args[]){
 		new StaffCaller();
 	}
-	StaffCaller(){
+	public StaffCaller(){
 		super("gui");
 		this.setSize(new Dimension(500,500));
 		contents.setLayout(new CardLayout());
@@ -32,7 +33,8 @@ public class StaffCaller extends JFrame{
 			}
 
 		};
-		
+		DB db = new DB();
+		db.setLogin();
 		cards[0] = new JPanel()
 				;
 		labels[0] = "Home";

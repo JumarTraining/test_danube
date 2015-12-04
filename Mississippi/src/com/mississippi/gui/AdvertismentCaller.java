@@ -9,10 +9,14 @@ import javax.swing.JPanel;
 import com.mississippi.gui.advert.AdvertisementCreateGUI;
 import com.mississippi.gui.advert.AdvertisementUpdateGUI;
 import com.mississippi.gui.advert.AdvertisementViewGui;
-
+//
 
 @SuppressWarnings("serial")
 public class AdvertismentCaller extends JFrame {
+	
+	//govan channges
+	
+	///test from westbury
 	
 	static JPanel contents = new JPanel();
 	JPanel[] cards = new JPanel[6];
@@ -20,7 +24,7 @@ public class AdvertismentCaller extends JFrame {
 	JButton[] buttons = {new JButton(),new JButton(),new JButton()};
 	static protected CardLayout cl;
 	
-	
+	//hfhfhfhfh
 	public static void main(String args[]){
 		new AdvertismentCaller();
 	}

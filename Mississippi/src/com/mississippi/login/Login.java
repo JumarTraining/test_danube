@@ -6,16 +6,15 @@ import java.awt.event.ActionListener;
 import java.io.UnsupportedEncodingException;
 import java.sql.*;
 import javax.swing.*;
-import javax.swing.JFrame.*;
 import com.mississippi.databaseaccess.DB;
-import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.Statement;
+import com.mississippi.gui.StaffCaller;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+@SuppressWarnings("serial")
 public class Login extends JFrame
 {
-	//create buttons and things
+	//initialize buttons and things
 	JLabel HeaderLBL = new JLabel("Staff Login");
 	JLabel IDLBL = new JLabel("Staff ID");
 	JLabel PassLBL = new JLabel("Password");
@@ -31,12 +30,14 @@ public class Login extends JFrame
 	String pass;
 	
 	public static void main(String[] args)
-	{
+	{	//create GUI and DB connection
+		DB a  = new DB();
+		a.setLogin();
 		new Login();
 	}
 
 	public Login()
-	{
+	{	//add things to GUI
 		setLayout(new GridBagLayout());
 		setSize(400, 400);
 		setVisible(true);
@@ -78,24 +79,69 @@ public class Login extends JFrame
 		SubmitBTN.addActionListener(new ListenToLogin());
 	}
 	
-	public byte[] getHash(String password) throws NoSuchAlgorithmException, UnsupportedEncodingException
-	{
-		MessageDigest digest = MessageDigest.getInstance("SHA-1");
+	public String getHash(String pass) throws NoSuchAlgorithmException, UnsupportedEncodingException
+	{	//hash password
+		MessageDigest digest = MessageDigest.getInstance("SHA-256");
 		digest.reset();
-		byte[] input = digest.digest(password.getBytes("UTF-8"));
-		return input;
+		byte[] input = digest.digest(pass.getBytes("UTF-8"));
+		return String.format("%s",new java.math.BigInteger(1, input));
 	 }
 	
 	class ListenToLogin implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e)
         {
-			String query = ("SELECT PassHash FROM staff where StaffID = '" + IDTXT.getText() + "';");
+			user = IDTXT.getText();
+			pass = PassTXT.getText();
+			String passHash = null;
+			try {
+				passHash = getHash(pass);
+			}
+			catch (NoSuchAlgorithmException e2)
+			{
+				e2.printStackTrace();
+			}
+			catch (UnsupportedEncodingException e2)
+			{
+				e2.printStackTrace();
+			}
+			//check user id
+			String idQuery = ("SELECT StaffID FROM staff;");
 			passcheck = new DB();
-			passcheck.setLogin(user, pass);
 			passcheck.createConnection();
-			ResultSet rs = passcheck.selectCustom(query);
+			ResultSet rs = passcheck.selectCustom(idQuery);
+			try
+			{
+				while(rs.next())
+				if(IDTXT.getText().equals(rs.getString("StaffID")))
+				{
+					//check password
+					String query = ("SELECT PassHash FROM staff where StaffID = '" + IDTXT.getText() + "';");
+					passcheck = new DB();
+					passcheck.createConnection();
+					ResultSet rs2 = passcheck.selectCustom(query);
+					while(rs2.next())
+						if(passHash.equals(rs2.getString("PassHash")))
+						{
+							new StaffCaller();
+							Login.this.dispose();
+						}
+						else
+						{
+							JOptionPane.showMessageDialog(null, "Incorrect password!", "Login Error", JOptionPane.ERROR_MESSAGE);
+						}
+					break;
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null, "That user ID does not exist!", "Login Error", JOptionPane.ERROR_MESSAGE);
+					break;
+				}
+			}	
+			catch (SQLException e1)
+			{
+				e1.printStackTrace();
+			}
         }
 	}
 }
-
