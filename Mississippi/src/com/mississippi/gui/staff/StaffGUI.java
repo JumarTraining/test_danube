@@ -7,6 +7,8 @@ import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
+import java.util.regex.Pattern;
+
 import javax.swing.*;
 
 import com.mississippi.databaseaccess.DB;
@@ -92,7 +94,6 @@ public class StaffGUI extends JPanel{
 		try {
 			while (rs.next()) {
 			    String types = rs.getString("Type");
-			    System.out.println(types);
 			    type.addItem(types);
 			    
 			}
@@ -103,6 +104,25 @@ public class StaffGUI extends JPanel{
 	protected void userSearch(String ID){
 		
 	}
+	
+	protected boolean verifyPass(String pass){
+		if(pass.length()>=8)
+		return true;
+		else return false;
+	}
+	protected boolean verifyFname(String fname){
+		
+		return (Pattern.matches("[^A-Za-z]", fname));
+	}
+	protected boolean verifyLname(String lname){
+		return (Pattern.matches("[^A-Za-z]", lname));
+	}
+	protected boolean verifyEmail(String email){
+		return (Pattern.matches("\\A[^@]+@([^@\\.]+\\.)+[^@\\.]+\\z",email));
+		
+	}
+
+	
 	
 }
 

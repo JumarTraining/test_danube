@@ -17,10 +17,6 @@ import javax.swing.SwingConstants;
 public class AddStaffGUI extends StaffGUI{
 	public AddStaffGUI(ActionListener a){
 		super();
-		
-
-		
-		
 		populateTypes(selectAllQuery("Types"));
 		populateGrades(selectAllQuery("Grades"));
 		c.gridx = 0;
@@ -71,6 +67,7 @@ public class AddStaffGUI extends StaffGUI{
 		c.gridx=1;
 		create.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
+				
 				ArrayList<String> Columns = new ArrayList<String>();
 				Columns.add("FirstName");
 				Columns.add("Surname");
@@ -108,10 +105,6 @@ public class AddStaffGUI extends StaffGUI{
 			e.printStackTrace();
 			return password;
 		}
-
-		
-		
-		
 	}
 	
 }
