@@ -110,22 +110,39 @@ public class Login extends JFrame
 			{
 				e2.printStackTrace();
 			}
-			String query = ("SELECT PassHash FROM staff where StaffID = '" + IDTXT.getText() + "';");
+			//check user id
+			String idQuery = ("SELECT StaffID FROM staff;");
 			passcheck = new DB();
 			passcheck.createConnection();
-			ResultSet rs = passcheck.selectCustom(query);
+			ResultSet rs = passcheck.selectCustom(idQuery);
 			try
 			{
 				while(rs.next())
-				if(passHash.equals(rs.getString("PassHash")))
+				if(IDTXT.getText().equals(rs.getString("StaffID")))
 				{
-					new StaffCaller();
+					//check password
+					String query = ("SELECT PassHash FROM staff where StaffID = '" + IDTXT.getText() + "';");
+					passcheck = new DB();
+					passcheck.createConnection();
+					ResultSet rs2 = passcheck.selectCustom(query);
+					while(rs2.next())
+						if(passHash.equals(rs2.getString("PassHash")))
+						{
+							new StaffCaller();
+							Login.this.dispose();
+						}
+						else
+						{
+							JOptionPane.showMessageDialog(null, "Incorrect password!", "Login Error", JOptionPane.ERROR_MESSAGE);
+						}
+					break;
 				}
 				else
 				{
-					JOptionPane.showMessageDialog(null, "Incorrect password!", "Login Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "That user ID does not exist!", "Login Error", JOptionPane.ERROR_MESSAGE);
+					break;
 				}
-			}
+			}	
 			catch (SQLException e1)
 			{
 				e1.printStackTrace();
