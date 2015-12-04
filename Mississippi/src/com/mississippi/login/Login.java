@@ -4,9 +4,13 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.UnsupportedEncodingException;
 import java.sql.*;
+
 import javax.swing.*;
+
 import com.mississippi.databaseaccess.DB;
+import com.mississippi.gui.StaffCaller;
 import com.mississippi.nexus.*;
+
 import java.security.*;
 
 @SuppressWarnings("serial")
@@ -109,7 +113,7 @@ public class Login extends JFrame
 					while(rs2.next())
 						if(passHash.equals(rs2.getString("PassHash")))
 						{
-							new Nexus();
+							new StaffCaller();
 							Login.this.dispose();
 						}
 						else
