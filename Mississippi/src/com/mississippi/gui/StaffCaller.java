@@ -21,7 +21,7 @@ public class StaffCaller extends JFrame{
 	public static void main(String args[]){
 		new StaffCaller();
 	}
-	StaffCaller(){
+	public StaffCaller(){
 		super("gui");
 		this.setSize(new Dimension(500,500));
 		contents.setLayout(new CardLayout());
