@@ -4,7 +4,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 
-
+//
 public class AdvertisementViewGui extends AdvertisementGUI {
 
 	public AdvertisementViewGui(ActionListener a) {
