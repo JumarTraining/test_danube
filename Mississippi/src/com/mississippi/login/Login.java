@@ -1,48 +1,29 @@
 package com.mississippi.login;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.io.UnsupportedEncodingException;
 import java.sql.*;
-
 import javax.swing.*;
-import javax.swing.JFrame.*;
-
 import com.mississippi.databaseaccess.DB;
-import com.mississippi.gui.StaffCaller;
-import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.Statement;
+import com.mississippi.nexus.*;
+import java.security.*;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
+@SuppressWarnings("serial")
 public class Login extends JFrame
-{
-	//create buttons and things
+{	//initialize buttons and things
 	JLabel HeaderLBL = new JLabel("Staff Login");
 	JLabel IDLBL = new JLabel("Staff ID");
 	JLabel PassLBL = new JLabel("Password");
-	
 	JTextField IDTXT = new JTextField();
-	JTextField PassTXT = new JTextField();
-	
+	JPasswordField PassTXT = new JPasswordField();
 	JButton SubmitBTN = new JButton("Enter");
-	
 	DB passcheck;
-	
 	String user;
 	String pass;
 	
-	public static void main(String[] args)
-	{
-		DB a  = new DB();
-		a.setLogin();
-		new Login();
-	}
-
 	public Login()
-	{
+	{	//add things to GUI
 		setLayout(new GridBagLayout());
 		setSize(400, 400);
 		setVisible(true);
@@ -85,7 +66,7 @@ public class Login extends JFrame
 	}
 	
 	public String getHash(String pass) throws NoSuchAlgorithmException, UnsupportedEncodingException
-	{
+	{	//hash password
 		MessageDigest digest = MessageDigest.getInstance("SHA-256");
 		digest.reset();
 		byte[] input = digest.digest(pass.getBytes("UTF-8"));
@@ -110,22 +91,39 @@ public class Login extends JFrame
 			{
 				e2.printStackTrace();
 			}
-			String query = ("SELECT PassHash FROM staff where StaffID = '" + IDTXT.getText() + "';");
+			//check user id
+			String idQuery = ("SELECT StaffID FROM staff;");
 			passcheck = new DB();
 			passcheck.createConnection();
-			ResultSet rs = passcheck.selectCustom(query);
+			ResultSet rs = passcheck.selectCustom(idQuery);
 			try
 			{
 				while(rs.next())
-				if(passHash.equals(rs.getString("PassHash")))
+				if(IDTXT.getText().equals(rs.getString("StaffID")))
 				{
-					new StaffCaller();
+					//check password
+					String query = ("SELECT PassHash FROM staff where StaffID = '" + IDTXT.getText() + "';");
+					passcheck = new DB();
+					passcheck.createConnection();
+					ResultSet rs2 = passcheck.selectCustom(query);
+					while(rs2.next())
+						if(passHash.equals(rs2.getString("PassHash")))
+						{
+							new Nexus();
+							Login.this.dispose();
+						}
+						else
+						{
+							JOptionPane.showMessageDialog(null, "Incorrect password!", "Login Error", JOptionPane.ERROR_MESSAGE);
+						}
+					break;
 				}
 				else
 				{
-					JOptionPane.showMessageDialog(null, "Incorrect password!", "Login Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "That user ID does not exist!", "Login Error", JOptionPane.ERROR_MESSAGE);
+					break;
 				}
-			}
+			}	
 			catch (SQLException e1)
 			{
 				e1.printStackTrace();
