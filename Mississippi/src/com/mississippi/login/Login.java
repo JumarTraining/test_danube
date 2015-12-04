@@ -15,7 +15,7 @@ import java.security.*;
 
 @SuppressWarnings("serial")
 public class Login extends JFrame
-{	//initialize buttons and things
+{	//initialize buttons and things lol
 	JLabel HeaderLBL = new JLabel("Staff Login");
 	JLabel IDLBL = new JLabel("Staff ID");
 	JLabel PassLBL = new JLabel("Password");

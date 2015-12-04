@@ -51,7 +51,7 @@ import java.io.*;
 	    public Nexus()
 		{
 			super("Main Window Mississippi");	
-//			myCalendar = new PersonalCalendar("SAHA");	
+//			myCalendar = new PersonalCalendar("SAHA"); haha	
 //			ce = new CalendarEntry();
 			addWindowListener(new WindowAdapter()
 			{
