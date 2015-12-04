@@ -10,6 +10,7 @@ import javax.swing.*;
 import javax.swing.JFrame.*;
 
 import com.mississippi.databaseaccess.DB;
+import com.mississippi.gui.StaffCaller;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
 
@@ -109,7 +110,11 @@ public class Login extends JFrame
 			{
 				if(Integer.toString(passHash) == rs.getString("PassHash"))
 				{
-					//do things for reasons
+					new StaffCaller();
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null, "Incorrect password!", "Login Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 			catch (SQLException e1)
@@ -119,27 +124,3 @@ public class Login extends JFrame
         }
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
