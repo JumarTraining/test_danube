@@ -9,21 +9,24 @@ import java.util.*;
 		Statement stat;
 		Properties prop = new Properties();
 		Driver d;
-		String url = "jdbc:mysql://localhost:3306/mississippi";
+		static String password = defaultPass();
+		static String url = "jdbc:mysql://localhost:3306/mississippi";
 		
 		public DB(){
 			
-			prop.setProperty("user", "User");
-			prop.setProperty("password", defaultPass());
+			prop.setProperty("user", "root");
+			prop.setProperty("password", password);
 		}
 		
 		public void setDatabase(String url){
 			this.url = url;
 		}
 		
-		public void setLogin(String user, String Pass){
-		prop.setProperty("user", user);
-		prop.setProperty("password", Pass);
+		public void setLogin(){
+			Scanner s = new Scanner(System.in);
+			System.out.println("Please Enter Password");
+			password = s.nextLine();
+			s.close();
 		}
 		
 		public boolean createConnection(){
