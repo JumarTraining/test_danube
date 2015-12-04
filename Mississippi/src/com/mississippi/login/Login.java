@@ -1,41 +1,27 @@
 package com.mississippi.login;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.io.UnsupportedEncodingException;
 import java.sql.*;
 import javax.swing.*;
 import com.mississippi.databaseaccess.DB;
-import com.mississippi.gui.StaffCaller;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import com.mississippi.nexus.*;
+import java.security.*;
 
 @SuppressWarnings("serial")
 public class Login extends JFrame
-{
-	//initialize buttons and things
+{	//initialize buttons and things
 	JLabel HeaderLBL = new JLabel("Staff Login");
 	JLabel IDLBL = new JLabel("Staff ID");
 	JLabel PassLBL = new JLabel("Password");
-	
 	JTextField IDTXT = new JTextField();
-	JTextField PassTXT = new JTextField();
-	
+	JPasswordField PassTXT = new JPasswordField();
 	JButton SubmitBTN = new JButton("Enter");
-	
 	DB passcheck;
-	
 	String user;
 	String pass;
 	
-	public static void main(String[] args)
-	{	//create GUI and DB connection
-		DB a  = new DB();
-		a.setLogin();
-		new Login();
-	}
-
 	public Login()
 	{	//add things to GUI
 		setLayout(new GridBagLayout());
@@ -123,7 +109,7 @@ public class Login extends JFrame
 					while(rs2.next())
 						if(passHash.equals(rs2.getString("PassHash")))
 						{
-							new StaffCaller();
+							new Nexus();
 							Login.this.dispose();
 						}
 						else
