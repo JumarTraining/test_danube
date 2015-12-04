@@ -1,6 +1,9 @@
 package com.mississippi.gui.staff;
 
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JSeparator;
@@ -38,8 +41,36 @@ public class UpdatePayGUI extends StaffGUI{
 		c.gridx=1;
 		create.setText("Submit");//re-use unused button :)
 		add(create,c);
+	}
+
+	@Override
+	protected void userSearch(String ID){
+		ArrayList<String> Columns = new ArrayList<String>();
+		ArrayList<String> Values = new ArrayList<String>();
+		if(staffId.getText().equals(""))
+			return;
+		Columns.add("StaffID");
+		Values.add(staffId.getText());
+		ResultSet rs = database.select("Staff", Columns, Values);
+		try {
+			rs.next();
+			fname.setText(rs.getString(rs.findColumn("FirstName")));
+			lname.setText(rs.getString(rs.findColumn("Surname")));
+			type.setSelectedItem(rs.getString(rs.findColumn("type")));
+			} catch (SQLException e) {
+			// TODO Auto-generated catch block
+		}
 		
-		
-		
+	}
+	protected void submit(){
+		ArrayList<String> Columns = new ArrayList<String>();
+		Columns.add("type");
+		ArrayList<String> Values = new ArrayList<String>();
+		Values.add(type.getSelectedItem().toString());
+		ArrayList<String> ConditionColumns = new ArrayList<String>();
+		ConditionColumns.add("StaffID");
+		ArrayList<String> ConditionValues = new ArrayList<String>();
+		ConditionValues.add(staffId.getText());
+		database.Update("Staff", Columns, Values, ConditionColumns, ConditionValues);
 	}
 }
