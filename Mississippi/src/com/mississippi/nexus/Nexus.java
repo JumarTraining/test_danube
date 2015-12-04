@@ -10,7 +10,6 @@ import java.util.*;
 import java.text.*;
 import java.io.*;
 
-
 	public class Nexus extends JFrame implements ActionListener
 	{
 		static Vector data, columnNames;			
@@ -52,8 +51,7 @@ import java.io.*;
 	    public Nexus()
 		{
 			super("Main Window Mississippi");	
-			System.out.println("TEST");
-//			myCalendar = new PersonalCalendar("SAHA");	
+//			myCalendar = new PersonalCalendar("SAHA"); haha	
 //			ce = new CalendarEntry();
 			addWindowListener(new WindowAdapter()
 			{
