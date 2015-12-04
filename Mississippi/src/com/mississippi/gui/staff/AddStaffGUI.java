@@ -4,6 +4,9 @@ package com.mississippi.gui.staff;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -69,21 +72,46 @@ public class AddStaffGUI extends StaffGUI{
 		create.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
 				ArrayList<String> Columns = new ArrayList<String>();
-				Columns.add("StaffID");
 				Columns.add("FirstName");
 				Columns.add("Surname");
+				Columns.add("Email");
+				Columns.add("Phone");
+				Columns.add("Location");
 				Columns.add("FK_Paygrade");
 				Columns.add("Type");
+				Columns.add("PassHash");
 				ArrayList<String> Values = new ArrayList<String>();
-				Values.add("45");
 				Values.add(fname.getText());
 				Values.add(lname.getText());
+				Values.add(email.getText());
+				Values.add(phone.getText());
+				Values.add(location.getText());
 				Values.add(paygrade.getSelectedItem().toString());
 				Values.add((String)type.getSelectedItem());
+				Values.add(setPass("password"));
 				database.Insert("Staff", Columns, Values);
 			}
 		});
 		this.add(create,c);
+	}
+	public String setPass(String password){
+		MessageDigest md;
+		try {
+			md = MessageDigest.getInstance("SHA-256");
+			md.update(password.getBytes("UTF-8"));
+			byte[] digest = md.digest();
+			return String.format("%s",new java.math.BigInteger(1, digest));
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+			return password;
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+			return password;
+		}
+
+		
+		
+		
 	}
 	
 }
