@@ -2,6 +2,9 @@ package com.mississippi.gui.staff;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -39,6 +42,11 @@ public class ChangePassGUI extends StaffGUI{
 		cancel.addActionListener(a);
 		add(cancel,c);
 		c.gridx=1;
+		create.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				submit();
+			}
+		});
 		create.setText("Submit");//re-use unused button :)
 		add(create,c);
 		
@@ -62,5 +70,31 @@ public class ChangePassGUI extends StaffGUI{
 			// TODO Auto-generated catch block
 		}
 		
+	}
+	protected void submit(){
+		ArrayList<String> Columns = new ArrayList<String>();
+		Columns.add("PassHash");
+		ArrayList<String> Values = new ArrayList<String>();
+		Values.add(setPass(password.getText()));
+		ArrayList<String> ConditionColumns = new ArrayList<String>();
+		ConditionColumns.add("StaffID");
+		ArrayList<String> ConditionValues = new ArrayList<String>();
+		ConditionValues.add(staffId.getText());
+		database.Update("Staff", Columns, Values, ConditionColumns, ConditionValues);
+	}
+	public String setPass(String password){
+		MessageDigest md;
+		try {
+			md = MessageDigest.getInstance("SHA-256");
+			md.update(password.getBytes("UTF-8"));
+			byte[] digest = md.digest();
+			return String.format("%s",new java.math.BigInteger(1, digest));
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+			return password;
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+			return password;
+		}
 	}
 }
