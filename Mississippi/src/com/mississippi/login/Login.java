@@ -82,15 +82,14 @@ public class Login extends JFrame
 		SubmitBTN.addActionListener(new ListenToLogin());
 	}
 	
-	/** USE THIS OR JUST hashCode() ?
-	public byte[] getHash(String password) throws NoSuchAlgorithmException, UnsupportedEncodingException
+	//USE THIS OR JUST hashCode() ?
+	public String getHash(String pass) throws NoSuchAlgorithmException, UnsupportedEncodingException
 	{
-		MessageDigest digest = MessageDigest.getInstance("SHA-1");
+		MessageDigest digest = MessageDigest.getInstance("SHA-256");
 		digest.reset();
-		byte[] input = digest.digest(password.getBytes("UTF-8"));
-		return input;
+		byte[] input = digest.digest(pass.getBytes("UTF-8"));
+		return String.format("%s",new java.math.BigInteger(1, input));
 	 }
-	 **/
 	
 	class ListenToLogin implements ActionListener
 	{
@@ -98,8 +97,18 @@ public class Login extends JFrame
         {
 			user = IDTXT.getText();
 			pass = PassTXT.getText();
-			int passHash;
-			passHash = pass.hashCode();
+			String passHash = null;
+			try {
+				passHash = getHash(pass);
+			}
+			catch (NoSuchAlgorithmException e2)
+			{
+				e2.printStackTrace();
+			}
+			catch (UnsupportedEncodingException e2)
+			{
+				e2.printStackTrace();
+			}
 			String query = ("SELECT PassHash FROM staff where StaffID = '" + IDTXT.getText() + "';");
 			passcheck = new DB();
 			passcheck.setLogin(user, pass);
@@ -108,7 +117,7 @@ public class Login extends JFrame
 			
 			try
 			{
-				if(Integer.toString(passHash) == rs.getString("PassHash"))
+				if(passHash == rs.getString("PassHash"))
 				{
 					new StaffCaller();
 				}
