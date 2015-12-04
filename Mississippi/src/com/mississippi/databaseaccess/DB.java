@@ -9,7 +9,7 @@ import java.util.*;
 		Statement stat;
 		Properties prop = new Properties();
 		Driver d;
-		static String password = defaultPass();
+		static String password = "password";
 		static String url = "jdbc:mysql://localhost:3306/mississippi";
 		//s
 		public DB(){
@@ -23,10 +23,11 @@ import java.util.*;
 		}
 		
 		public void setLogin(){
+			if(password.equals("password")){
 			Scanner s = new Scanner(System.in);
 			System.out.println("Please Enter Password");
 			password = s.nextLine();
-			s.close();
+			s.close();}
 		}
 		
 		public boolean createConnection(){
@@ -176,7 +177,5 @@ import java.util.*;
 	public boolean insertCustom(String q){
 		return executeUpdate(q);
 	}
-	static String defaultPass(){
-		return "goomoonryong";
-	}
+
 }

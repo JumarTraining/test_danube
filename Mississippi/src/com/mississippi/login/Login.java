@@ -36,6 +36,8 @@ public class Login extends JFrame
 	
 	public static void main(String[] args)
 	{
+		DB a  = new DB();
+		a.setLogin();
 		new Login();
 	}
 
@@ -82,7 +84,6 @@ public class Login extends JFrame
 		SubmitBTN.addActionListener(new ListenToLogin());
 	}
 	
-	//USE THIS OR JUST hashCode() ?
 	public String getHash(String pass) throws NoSuchAlgorithmException, UnsupportedEncodingException
 	{
 		MessageDigest digest = MessageDigest.getInstance("SHA-256");
@@ -111,13 +112,12 @@ public class Login extends JFrame
 			}
 			String query = ("SELECT PassHash FROM staff where StaffID = '" + IDTXT.getText() + "';");
 			passcheck = new DB();
-			passcheck.setLogin(user, pass);
 			passcheck.createConnection();
 			ResultSet rs = passcheck.selectCustom(query);
-			
 			try
 			{
-				if(passHash == rs.getString("PassHash"))
+				while(rs.next())
+				if(passHash.equals(rs.getString("PassHash")))
 				{
 					new StaffCaller();
 				}
