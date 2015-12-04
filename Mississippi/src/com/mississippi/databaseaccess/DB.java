@@ -11,7 +11,7 @@ import java.util.*;
 		Driver d;
 		static String password = defaultPass();
 		static String url = "jdbc:mysql://localhost:3306/mississippi";
-		//
+		//s
 		public DB(){
 			
 			prop.setProperty("user", "root");
