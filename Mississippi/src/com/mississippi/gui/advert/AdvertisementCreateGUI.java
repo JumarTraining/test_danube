@@ -1,10 +1,14 @@
 package com.mississippi.gui.advert;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
 //ryan
 @SuppressWarnings("serial")
 public class AdvertisementCreateGUI extends AdvertisementGUI {
@@ -50,6 +54,32 @@ public class AdvertisementCreateGUI extends AdvertisementGUI {
 		cancel.addActionListener(a);
 		this.add(cancel,c);
 		c.gridx=1;
+		create.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent arg0) {
+				buildCreateSql();
+				
+			}
+
+		});
+		
+		create.addKeyListener(new KeyListener(){
+
+			public void keyPressed(KeyEvent arg0) {}
+			
+			public void keyReleased(KeyEvent arg0) {
+				//createEnable();
+			}
+			
+			public void keyTyped(KeyEvent arg0){}
+		});
 		this.add(create,c);
 	}
+	
+	void buildCreateSql(){
+		//create statement for database insert 
+		
+		
+	}
+
 }

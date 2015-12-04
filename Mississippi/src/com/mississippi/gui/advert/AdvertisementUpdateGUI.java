@@ -1,9 +1,10 @@
 package com.mississippi.gui.advert;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
-
 
 public class AdvertisementUpdateGUI extends AdvertisementGUI {
 
@@ -22,6 +23,8 @@ public class AdvertisementUpdateGUI extends AdvertisementGUI {
 		//adding labels
 		c.gridx=0;
 		c.gridy=2;
+		this.add(idLbl,c);
+		c.gridy++;
 		this.add(titleLbl,c);
 		c.gridy++;
 		this.add(startDateLbl,c);
@@ -35,6 +38,27 @@ public class AdvertisementUpdateGUI extends AdvertisementGUI {
 		//adding textfields and combobox's
 		c.gridy=2;
 		c.gridx=1;
+		this.add(advertId,c);
+		c.gridy++;
+		advertId.setFocusable(true);
+		Search.setEnabled(false);
+		advertId.addKeyListener(new KeyListener(){
+			public void keyPressed(KeyEvent arg0) {}
+			
+			public void keyReleased(KeyEvent arg0) {
+				// TODO Auto-generated method stub
+				if(advertId.getText().length()>0){
+					Search.setEnabled(true);
+				} else 
+					Search.setEnabled(false);
+			}
+
+			public void keyTyped(KeyEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
 		this.add(title,c);
 		c.gridy++;
 		this.add(startDate,c);
@@ -51,7 +75,9 @@ public class AdvertisementUpdateGUI extends AdvertisementGUI {
 		cancel.addActionListener(a);
 		this.add(cancel,c);
 		c.gridx=1;
-		this.add(create,c);
+		this.add(Update,c);
+		c.gridx=2;
+		this.add(Search,c);
 		
 	}
 
