@@ -1,11 +1,13 @@
 package com.mississippi.gui.advert;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 
-//
-public class AdvertisementViewGui extends AdvertisementGUI {
+public class AdvertisementViewGui extends AdvertisementGUI{
 
 	public AdvertisementViewGui(ActionListener a) {
 		// TODO Auto-generated constructor stub
@@ -21,6 +23,8 @@ public class AdvertisementViewGui extends AdvertisementGUI {
 		//adding labels
 		c.gridx=0;
 		c.gridy=2;
+		this.add(idLbl,c);
+		c.gridy++;
 		this.add(titleLbl,c);
 		c.gridy++;
 		this.add(startDateLbl,c);
@@ -34,15 +38,36 @@ public class AdvertisementViewGui extends AdvertisementGUI {
 		//adding textfields and combobox's
 		c.gridy=2;
 		c.gridx=1;
-		this.add(title,c);
+		this.add(advertId,c);
+		advertId.setFocusable(true);
+		Search.setEnabled(false);
+		advertId.setHorizontalAlignment(advertId.CENTER);
+		advertId.addKeyListener(new KeyListener(){
+			
+			public void keyPressed(KeyEvent arg0) {}
+			
+			
+			public void keyReleased(KeyEvent arg0) {
+				// TODO Auto-generated method stub
+				if(advertId.getText().length()>0){
+					Search.setEnabled(true);
+				} else 
+					Search.setEnabled(false);
+			}
+			
+			public void keyTyped(KeyEvent arg0) {}
+			
+		});
 		c.gridy++;
-		this.add(startDate,c);
+		this.add(titlertn,c);
 		c.gridy++;
-		this.add(duration,c);
+		this.add(startDatertn,c);
 		c.gridy++;
-		this.add(progress,c);
+		this.add(durationrtn,c);
 		c.gridy++;
-		this.add(cost,c);
+		this.add(progressrtn,c);
+		c.gridy++;
+		this.add(costrtn,c);
 		c.gridy++;
 		
 		//adding buttons
@@ -50,7 +75,22 @@ public class AdvertisementViewGui extends AdvertisementGUI {
 		cancel.addActionListener(a);
 		this.add(cancel,c);
 		c.gridx=1;
-		this.add(create,c);
+		Search.addActionListener(new ActionListener (){
+
+			
+			public void actionPerformed(ActionEvent arg0) {
+				
+				buildViewSql();	
+			}
+			
+		});
+		this.add(Search,c);
+	
+		
+		
 	}
+void buildViewSql(){
+	//add sql for 
+}
 
 }

@@ -10,16 +10,24 @@ public class AdvertisementGUI extends JPanel {
 	JButton Search = new JButton("Search");
 	JButton Update = new JButton("Update");
 	JButton cancel = new JButton("cancel");
+	JTextField advertId = new JTextField("",20);
 	JTextField title = new JTextField("",20);
 	JTextField startDate = new JTextField("",20);
 	JTextField duration = new JTextField("",20);
 	JTextField progress = new JTextField("",20);
 	JTextField cost = new JTextField("",20);
+	JLabel idLbl = new JLabel("ID:" );
 	JLabel titleLbl = new JLabel("Title:" );
 	JLabel startDateLbl = new JLabel("Start Date:");
 	JLabel durationLbl = new JLabel("Duration:");
 	JLabel progressLbl = new JLabel("Progress");
 	JLabel costLbl = new JLabel("Cost");
+	JLabel idrtn = new JLabel("ID:" );
+	JLabel titlertn = new JLabel("" );
+	JLabel startDatertn = new JLabel("");
+	JLabel durationrtn = new JLabel("");
+	JLabel progressrtn = new JLabel("");
+	JLabel costrtn = new JLabel("");
 	JLabel Heading = new JLabel();
 	
 	GridBagConstraints c;

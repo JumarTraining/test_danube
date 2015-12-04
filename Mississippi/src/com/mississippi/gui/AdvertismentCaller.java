@@ -14,22 +14,18 @@ import com.mississippi.gui.advert.AdvertisementViewGui;
 @SuppressWarnings("serial")
 public class AdvertismentCaller extends JFrame {
 	
-	//govan channges
-	
-	///test from westbury
-	
 	static JPanel contents = new JPanel();
-	JPanel[] cards = new JPanel[6];
-	String[] labels = new String[6];
+	JPanel[] cards = new JPanel[4];
+	String[] labels = new String[5];
 	JButton[] buttons = {new JButton(),new JButton(),new JButton()};
 	static protected CardLayout cl;
 	
-	//hfhfhfhfh
+	
 	public static void main(String args[]){
 		new AdvertismentCaller();
 	}
 	AdvertismentCaller(){
-		super("gui");
+		super("Advertisements");
 		this.setSize(new Dimension(500,500));
 		contents.setLayout(new CardLayout());
 		cl = (CardLayout)(contents.getLayout());
@@ -38,8 +34,21 @@ public class AdvertismentCaller extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			    cl.show(contents, labels[0]);
 			}
-
+			
 		};
+		
+/*		KeyListener k = new KeyListener(){
+
+			@Override
+			public void keyPressed(KeyEvent arg0) {}
+
+			@Override
+			public void keyReleased(KeyEvent arg0) {}
+
+			@Override
+			public void keyTyped(KeyEvent arg0) {}
+			
+		};*/
 		
 		cards[0] = new JPanel()
 				;
@@ -56,7 +65,7 @@ public class AdvertismentCaller extends JFrame {
 		c.insets = new Insets(5,5,5,5);
 		c.fill = GridBagConstraints.BOTH;
 		
-		for(int i = 0;i < 5; i++){
+		for(int i = 0;i < 3; i++){
 			final int b = i+1;
 			buttons[i].setText(labels[i+1]);
 			buttons[i].setSize(300, 80);
@@ -75,13 +84,14 @@ public class AdvertismentCaller extends JFrame {
 		cards[2] = new AdvertisementViewGui(a);
 		cards[3] = new AdvertisementUpdateGUI(a);
 		
-		for(int i = 0;i < 6; i++){
+		for(int i = 0;i < 4; i++){
 			contents.add(cards[i],labels[i]);
 		}
 		
 		this.add(contents);
 		setVisible(true);
 		setResizable(false);
+		setLocationRelativeTo(null);
 		
 		
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
