@@ -5,21 +5,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.UnsupportedEncodingException;
 import java.sql.*;
-
 import javax.swing.*;
-import javax.swing.JFrame.*;
-
 import com.mississippi.databaseaccess.DB;
 import com.mississippi.gui.StaffCaller;
-import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.Statement;
-
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+@SuppressWarnings("serial")
 public class Login extends JFrame
 {
-	//create buttons and things
+	//initialize buttons and things
 	JLabel HeaderLBL = new JLabel("Staff Login");
 	JLabel IDLBL = new JLabel("Staff ID");
 	JLabel PassLBL = new JLabel("Password");
@@ -35,14 +30,14 @@ public class Login extends JFrame
 	String pass;
 	
 	public static void main(String[] args)
-	{
+	{	//create GUI and DB connection
 		DB a  = new DB();
 		a.setLogin();
 		new Login();
 	}
 
 	public Login()
-	{
+	{	//add things to GUI
 		setLayout(new GridBagLayout());
 		setSize(400, 400);
 		setVisible(true);
@@ -85,7 +80,7 @@ public class Login extends JFrame
 	}
 	
 	public String getHash(String pass) throws NoSuchAlgorithmException, UnsupportedEncodingException
-	{
+	{	//hash password
 		MessageDigest digest = MessageDigest.getInstance("SHA-256");
 		digest.reset();
 		byte[] input = digest.digest(pass.getBytes("UTF-8"));
