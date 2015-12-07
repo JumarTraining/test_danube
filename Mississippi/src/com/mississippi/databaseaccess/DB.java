@@ -132,9 +132,9 @@ import java.util.*;
 			}
 		}
 		q+=" Where ";
-				for(int i = 0; i < Columns.size(); i++){
+				for(int i = 0; i < ConditionColumns.size(); i++){
 					q+=ConditionColumns.get(i)+" = '"+ConditionValues.get(i)+"'";
-					if(i<Columns.size()-1){ q+=", ";}
+					if(i<ConditionColumns.size()-1){ q+=", ";}
 					else{q+=";";}
 					
 				}
